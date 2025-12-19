@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Krishna Enterprise Products</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: #f4f4f9; padding: 20px; }
+        .container { max-width: 900px; margin: auto; }
+        h1 { text-align: center; color: #2c3e50; }
+        .category-block { background: white; border-radius: 8px; padding: 20px; margin-bottom: 20px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
+        h2 { color: #d35400; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 0; }
+        ul { 
+            list-style: none; 
+            padding: 0; 
+            display: grid; 
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); 
+            gap: 15px; 
+        }
+        li { 
+            background: #fff5eb; 
+            padding: 12px; 
+            border-left: 5px solid #e67e22; 
+            border-radius: 4px; 
+            font-size: 16px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Krishna Enterprise Product List</h1>
+        <div id="product-list"></div>
+    </div>
+
+    <script>
+        const productData = [
+            {
+                category: "Seasoning Masala",
+                items: ["Chat Masala", "Cheese Garlic Bread", "Peri Peri", "Maggi Masala", "Chinese Manchurian", "Hot Barbeque", "Cheese Barbeque", "Mexican"]
+            },
+            {
+                category: "Fruit & Vegetable Powder",
+                items: ["Tomato Powder", "Banana Powder", "Strawberry Powder", "Amla Powder"]
+            },
+            {
+                category: "Instant Drink Powder",
+                items: ["Apple Juice", "Green Mango", "Pink Guava", "Kokum Jamun", "Litchi Drink", "Orange Drink", "Lemon Amla Drink", "Mojito Drink", "Pineapple Drink"]
+            },
+            {
+                category: "Instant Shake Powder",
+                items: ["Strawberry Shake", "Choco Shake", "Sitaphal Kulfi Shake", "Mango Shake", "Chocolate Shake", "Cold Coffee", "Cold Cocoa Shake"]
+            }
+        ];
+
+        const displayProducts = () => {
+            const container = document.getElementById('product-list');
+            container.innerHTML = ""; // Purana content saaf karne ke liye
+
+            productData.forEach(section => {
+                const div = document.createElement('div');
+                div.className = 'category-block';
+                
+                // Items ko list items (li) mein badalna
+                const itemsHtml = section.items.map(item => `<li>${item}</li>`).join('');
+
+                div.innerHTML = `
+                    <h2>${section.category}</h2>
+                    <ul>
+                        ${itemsHtml}
+                    </ul>
+                `;
+                container.appendChild(div);
+            });
+        };
+
+        displayProducts();
+    </script>
+</body>
+</html>
